@@ -21,7 +21,7 @@ public class Viatge {
 		return 0;}
 	
 	
-	public HashSet<TupleTypeCiutat > getLlista(){
+	public HashSet<Pair > getLlista(){
 		//TODO 
 		return null;}
 }

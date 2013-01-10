@@ -3,7 +3,7 @@ package com.practica.as.DomainControllers;
 import java.util.Date;
 import java.util.HashSet;
 
-import com.practica.as.DomainModel.TupleTypeCiutat;
+import com.practica.as.DomainModel.Pair;
 
 public class CtrlContractarViatge {
 
@@ -14,7 +14,7 @@ public class CtrlContractarViatge {
 	private float preuVol;
 	private float preuH;
 	
-	public HashSet<TupleTypeCiutat> obteCiutats(){
+	public HashSet<Pair> obteCiutats(){
 		// TODO
 		return null;
 	}
@@ -23,7 +23,7 @@ public class CtrlContractarViatge {
 		//TODO
 	}
 	
-	public HashSet<TupleTypeCiutat> mostraHotelsLliures() {
+	public HashSet<Pair> mostraHotelsLliures() {
 		//TODO
 		return null;
 	}

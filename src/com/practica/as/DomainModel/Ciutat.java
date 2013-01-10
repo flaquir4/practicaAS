@@ -9,7 +9,7 @@ public class Ciutat {
 	private String descripcio;
 	private float preuVol;
 	
-	public HashSet<TupleTypeCiutat > getLlista(Date dataInici, Date dataFi){
+	public HashSet<Pair > getLlista(Date dataInici, Date dataFi){
 		//TODO
 		return null;
 	}
