@@ -1,5 +1,7 @@
 package com.practica.as.DataInterface;
 
-public interface ICtrlClient {
+import com.practica.as.DomainModel.Client;
 
+public interface ICtrlClient {
+	public Client get(String dni);
 }

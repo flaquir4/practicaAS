@@ -1,5 +1,10 @@
 package com.practica.as.DataInterface;
 
-public interface ICtrlCiutat {
+import java.util.HashSet;
 
+import com.practica.as.DomainModel.Ciutat;
+
+public interface ICtrlCiutat {
+	
+	public HashSet<Ciutat> tots();
 }
