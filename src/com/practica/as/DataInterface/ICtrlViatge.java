@@ -1,5 +1,10 @@
 package com.practica.as.DataInterface;
 
-public interface ICtrlViatge {
+import java.util.Date;
 
+import com.practica.as.DomainModel.Viatge;
+
+public interface ICtrlViatge {
+	
+	public Viatge get(String dni, Date dataInici);
 }
