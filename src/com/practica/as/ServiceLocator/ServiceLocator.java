@@ -1,13 +1,10 @@
 package com.practica.as.ServiceLocator;
 
-public class ServiceLocator {
-	
+public enum ServiceLocator {
 	// SINGLETON
-	
-	ServiceLocator instance;
-	
-	ServiceLocator getInstance(){
-		return null;
-	}
 
+	INSTANCE;
+
+	// TODO
+	// public ServiceReference find(String name) {}
 }

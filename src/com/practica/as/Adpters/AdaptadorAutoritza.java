@@ -1,5 +1,5 @@
 package com.practica.as.Adpters;
 
-public class AdaptadorAutoritza {
+public class AdaptadorAutoritza implements IAdaptadorAutoritza {
 
 }
