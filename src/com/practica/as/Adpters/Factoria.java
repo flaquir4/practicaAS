@@ -1,8 +1,11 @@
 package com.practica.as.Adpters;
 
-public class Factoria {
-
-	
+public enum Factoria {
 	// SINGLETON
+	INSTANCE;
 	
+	public AdaptadorAutoritza getAdaptadorAutoritza(){
+		// TODO
+		return null;
+	}
 }
