@@ -10,8 +10,12 @@ public class Client {
 	private Integer nombreViatges;
 	
 	//Funció que llença una excepció si el client ja te viatge.
-	public void jaTeViatge( Date datafi){}
+	public void jaTeViatge( Date datafi){
+		//TODO
+	}
 	
-	public void creaViatge(String nom, Date dataInici, Date dataFi){}
+	public void creaViatge(String nom, Date dataInici, Date dataFi){
+		//TODO
+	}
 	
 }
