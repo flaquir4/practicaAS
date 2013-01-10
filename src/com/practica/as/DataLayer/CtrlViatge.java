@@ -1,5 +1,7 @@
 package com.practica.as.DataLayer;
 
-public class CtrlViatge {
+import com.practica.as.DataInterface.ICtrlViatge;
+
+public class CtrlViatge implements ICtrlViatge {
 
 }
