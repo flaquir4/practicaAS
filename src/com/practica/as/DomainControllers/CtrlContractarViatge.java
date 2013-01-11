@@ -13,6 +13,7 @@ public class CtrlContractarViatge {
 	private Date dataFi;
 	private float preuVol;
 	private float preuH;
+	private CtrlReservarHabitacio ctrlReservarHabitacio;
 	
 	public HashSet<Pair> obteCiutats(){
 		// TODO
