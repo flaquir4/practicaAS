@@ -40,6 +40,7 @@ public class Habitacio {
 	
 	public Integer getNumero() {
 		// TODO
+		// return CmpKeyHabitacio.getNumero();
 		return null;
 	}
 	

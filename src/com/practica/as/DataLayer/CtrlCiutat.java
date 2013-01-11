@@ -9,7 +9,8 @@ public class CtrlCiutat implements ICtrlCiutat {
 
 	@Override
 	public HashSet<Ciutat> tots() {
-		// TODO Auto-generated method stub
+		// TODO
+		// ?????
 		return null;
 	}
 

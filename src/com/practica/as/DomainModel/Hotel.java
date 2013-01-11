@@ -50,6 +50,7 @@ public class Hotel {
 	
 	public String getNom() {
 		// TODO
+		// return CmpKeyHotel.getNom();
 		return null;
 	}
 	
