@@ -13,5 +13,11 @@ public class HotelSuperior extends Hotel {
 	public void setRecarrec(float recarrec) {
 		this.recarrec = recarrec;
 	}
+	
+	public float getSuplement() {
+		// TODO
+		// return recarrec;
+		return 0;
+	}
 
 }

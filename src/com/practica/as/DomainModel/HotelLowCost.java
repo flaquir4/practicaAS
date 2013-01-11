@@ -13,5 +13,11 @@ public class HotelLowCost extends Hotel {
 	public void setDescompte(float descompte) {
 		this.descompte = descompte;
 	}
+	
+	public float getSuplement() {
+		// TODO
+		// return descompte * (-1);
+		return 0;
+	}
 
 }

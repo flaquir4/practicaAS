@@ -1,6 +1,7 @@
 package com.practica.as.DomainModel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -38,11 +39,48 @@ public class Hotel {
 	}
 
 	public float getPreu() {
+		// TODO
+		// float r = self.getSuplement();
+		// return (self.preu + r) * (df - di); // las fechas de donde saleeen??????  
 		return preu;
 	}
 	public void setPreu(float preu) {
 		this.preu = preu;
 	}
 	
+	public String getNom() {
+		// TODO
+		return null;
+	}
+	
+	public Integer getNumHabDisponible(Date di, Date df) {
+		// TODO
+		// Integer aux;
+		// for (Habitacio h : habitacions && aux == null) {
+		//    aux = h.disponible(di, df);
+		// }
+		// return aux;
+		return null;
+	}
+	
+	public float getSuplement() {
+		return 0;
+	}
+	
+	public float reservaHabitacio(Viatge v, Date di, Date df) {
+		// TODO
+		// Integer numH = self.getNumHabDisponible(di, df);
+		// boolean fi = false;
+		// for (Habitacio h : habitacions && !fi) {
+		//    int numero = h.getNumero();
+		//    fi = numH == numero;
+		//    if (fi) {
+		//       float preuH = self.getPreu();
+		//       h.setViatge(v);
+		//    }
+		// }
+		// return preuH; // ojooooo, que igual no es defineix preuH!!!!
+		return 0;
+	}
 
 }
