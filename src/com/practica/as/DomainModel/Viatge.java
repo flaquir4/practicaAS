@@ -10,6 +10,7 @@ public class Viatge {
 	public Date dataInici;
 	public Date dataFi;
 	private Ciutat ciutat;
+	private Client client;
 	
 	public boolean estaDisponible(Date di, Date df) {
 		return dataInici.after(df) && dataFi.before(di); 
