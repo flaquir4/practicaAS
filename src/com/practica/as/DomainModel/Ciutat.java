@@ -5,8 +5,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
 @Entity
 public class Ciutat {
 
@@ -21,12 +23,13 @@ public class Ciutat {
 			Integer r = h.getNumHabDisponible(dataInici, dataFi);
 			if (r != null) {
 				String nom = h.getNom();
-				float preu = h.getPreu();
+				float preu = h.getPreu(dataInici, dataFi);
 				llista.add(new Pair(nom, preu));
 			}
 		}
 		return llista;
 	}
+
 	@Id
 	public String getNom(){
 		return nom;
@@ -36,6 +39,13 @@ public class Ciutat {
 		return preuVol;
 	}
 	
+	public void setNom(String nom){
+		this.nom = nom;
+	}
+	
+	public void setPreuVol(float preuVol) {
+		this.preuVol = preuVol;
+	}
 	
 	public float reservaHabitacio(String nomH, Viatge v, Date dataInici, Date dataFi){
 		boolean fi = false;

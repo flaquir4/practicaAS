@@ -38,11 +38,10 @@ public class Hotel {
 		this.habitacions = habitacions;
 	}
 
-	public float getPreu() {
-		// TODO -- las fechas de donde saleeen??????
-		// float r = self.getSuplement();
-		// return (self.preu + r) * (df - di);   
-		return preu;
+	public float getPreu(Date di, Date df) {
+		float r = getSuplement();
+		int dies = (df.getYear() - di.getYear())*365 + (df.getMonth() - di.getMonth())*30 + (df.getDate() - di.getDate());
+		return (preu + r) * dies;
 	}
 	public void setPreu(float preu) {
 		this.preu = preu;
@@ -66,7 +65,6 @@ public class Hotel {
 	}
 	
 	public float reservaHabitacio(Viatge v, Date di, Date df) {
-		// TODO podria ser que preuH tenga valor 0 si nunca entra en el if
 		Integer numH = getNumHabDisponible(di, df);
 		boolean fi = false;
 		float preuH = 0;
@@ -75,7 +73,7 @@ public class Hotel {
 			int numero = h.getNumero();
 			fi = numH == numero;
 			if (fi) {
-				preuH = getPreu();
+				preuH = getPreu(di, df);
 				h.setViatge(v);
 			}
 		}

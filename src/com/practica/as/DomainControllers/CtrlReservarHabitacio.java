@@ -29,7 +29,7 @@ public class CtrlReservarHabitacio {
 		this.dataInici = dataInici;
 		CtrlViatge cv = CtrlDataFactoria.INSTANCE.getCtrlViatge();
 		Viatge v = cv.get(dni, dataInici);
-		HashSet<Pair> llista = v.getLlista();
+		HashSet<Pair> llista = v.obteLlista();
 		if (llista.isEmpty())  throw new HotelsNoLliures();
 		return llista;
 	}

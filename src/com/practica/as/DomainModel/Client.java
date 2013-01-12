@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import Excepcions.JaTeViatge;
+
 @Entity
 public class Client {
 	private String dni;
@@ -52,7 +51,7 @@ public class Client {
 		this.nombreViatges = nombreViatges;
 	}
 
-	@OneToMany(targetEntity=Viatge.class,mappedBy="client", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@Transient
 	public List<Viatge> getViatges() {
 		return viatges;
 	}
@@ -61,12 +60,7 @@ public class Client {
 		this.viatges = viatges;
 	}
 
-
-	//public void jaTeViatge borrada por corrección de la profe
-
-
 	public void creaViatge(Ciutat ciutat, Date dataInici, Date dataFi) throws JaTeViatge{
-
 		for (Viatge v : viatges) {
 			boolean b = v.estaDisponible(dataInici, dataFi);
 			if (!b)throw new JaTeViatge();
@@ -75,8 +69,6 @@ public class Client {
 		 nombreViatges++;
 		 viatges.add(v);
 	}
-
-
 
 }
 

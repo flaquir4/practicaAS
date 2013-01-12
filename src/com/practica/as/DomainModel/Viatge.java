@@ -3,23 +3,48 @@ package com.practica.as.DomainModel;
 import java.util.Date;
 import java.util.HashSet;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+import com.practica.as.DataLayer.CmpKeyViatge;
 
 
-
+@Entity
 public class Viatge {
 
-	public Date dataInici;
-	public Date dataFi;
+	//public Date dataInici;
+	private CmpKeyViatge viatgePK;
+	private Date dataFi;
 	private Ciutat ciutat;
-	private String dni;
+	//private String dni;
 
+	public Viatge(String dni, Ciutat ciutat, Date dataIni, Date dataFi) {
+		this.dataFi = dataFi;
+		this.viatgePK = new CmpKeyViatge();
+		this.viatgePK.setDataInici(dataIni);
+		this.viatgePK.setDni(dni);
+		this.ciutat = ciutat;
+	}
+
+	@Id
+	public CmpKeyViatge getViatgePK() {
+		return viatgePK;
+	}
+
+	public void setViatgePK(CmpKeyViatge viatgePK) {
+		this.viatgePK = viatgePK;
+	}
+
+	@Transient
 	public Date getDataInici() {
-		return dataInici;
+		return viatgePK.getDataInici();
 	}
 
 	public void setDataInici(Date dataInici) {
-		this.dataInici = dataInici;
+		this.viatgePK.setDataInici(dataInici);
 	}
 
 	public Date getDataFi() {
@@ -30,6 +55,7 @@ public class Viatge {
 		this.dataFi = dataFi;
 	}
 
+	@ManyToOne(cascade=CascadeType.ALL)
 	public Ciutat getCiutat() {
 		return ciutat;
 	}
@@ -38,36 +64,27 @@ public class Viatge {
 		this.ciutat = ciutat;
 	}
 
-
+	@Transient
 	public String getDni() {
-		return dni;
+		return viatgePK.getDni();
 	}
 
 	public void setDni(String dni) {
-		this.dni = dni;
+		this.viatgePK.setDni(dni);
 	}
 
 
 	public boolean estaDisponible(Date di, Date df) {
-		return dataInici.after(df) && dataFi.before(di); 
-	}
-
-	public  Viatge(String dni, Ciutat ciutat, Date dataIni, Date dataFi) {
-		this.dataFi=dataFi;
-		this.dataInici=dataIni;
-		this.dni=dni;
-		this.ciutat=ciutat;
-
+		return getDataInici().after(df) && dataFi.before(di); 
 	}
 
 	public float reservaHabitacio(String nomH) {
-		float preuH = ciutat.reservaHabitacio(nomH, this, dataInici, dataFi);
+		float preuH = ciutat.reservaHabitacio(nomH, this, getDataInici(), dataFi);
 		return preuH;
 	}
 
-
-	public HashSet<Pair> getLlista() {
-		HashSet<Pair> llista = ciutat.getLlista(dataInici, dataFi);
+	public HashSet<Pair> obteLlista() {
+		HashSet<Pair> llista = ciutat.getLlista(getDataInici(), dataFi);
 		return llista;
 	}
 }
