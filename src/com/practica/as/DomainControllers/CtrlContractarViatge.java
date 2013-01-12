@@ -3,6 +3,9 @@ package com.practica.as.DomainControllers;
 import java.util.Date;
 import java.util.HashSet;
 
+import Excepcions.hotelsNoLliures;
+import Excepcions.jaTeViatge;
+
 import com.practica.as.Adpters.AdaptadorAutoritza;
 import com.practica.as.Adpters.Factoria;
 import com.practica.as.DataInterface.CtrlDataFactoria;
@@ -27,10 +30,9 @@ public class CtrlContractarViatge {
 		return ciutats;
 	}
 	
-	public void enregistraViatge(String dni, Date dataInici, Date dataFi, String nom) {
+	public void enregistraViatge(String dni, Date dataInici, Date dataFi, String nom) throws jaTeViatge {
 		CtrlClient cc = CtrlDataFactoria.INSTANCE.getCtrlClient();
 		Client c = cc.get(dni);
-		c.jaTeViatge(dataInici, dataFi);
 		c.creaViatge(nom, dataInici, dataFi);
 		this.dni = dni;
 		this.dataInici = dataInici;
@@ -38,7 +40,7 @@ public class CtrlContractarViatge {
 		this.nom = nom;
 	}
 	
-	public HashSet<Pair> mostraHotelsLliures() {
+	public HashSet<Pair> mostraHotelsLliures() throws hotelsNoLliures {
 		ctrlReservarHabitacio = new CtrlReservarHabitacio(dni, dataInici);
 		HashSet<Pair> llista = ctrlReservarHabitacio.mostraHotelsLliures();
 		return llista;

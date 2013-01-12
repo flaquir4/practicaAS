@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+@Entity
 public class Ciutat {
 
 	private String nom;
@@ -24,7 +27,7 @@ public class Ciutat {
 		}
 		return llista;
 	}
-	
+	@Id
 	public String getNom(){
 		return nom;
 	}
@@ -35,7 +38,7 @@ public class Ciutat {
 	
 	
 	public float reservaHabitacio(String nomH, Viatge v, Date dataInici, Date dataFi){
-		// TODO - podria passar que preuH no tingui valor en acabar el bucle... 
+		// TODO - podria passar que preuH no tingui valor en acabar el bucle... // no porque si no hubiese saltado la excepcion hotels no llliures
 		boolean fi = false;
 		float preuH = 0;
 		for (int i=0; i < hotels.size() && !fi; i++) {

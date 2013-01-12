@@ -3,6 +3,8 @@ package com.practica.as.DomainControllers;
 import java.util.Date;
 import java.util.HashSet;
 
+import Excepcions.hotelsNoLliures;
+
 import com.practica.as.DataInterface.CtrlDataFactoria;
 import com.practica.as.DataLayer.CtrlViatge;
 import com.practica.as.DomainModel.Pair;
@@ -22,12 +24,11 @@ public class CtrlReservarHabitacio {
 		this.dataInici = dataInici;
 	}
 	
-	public HashSet<Pair> mostraHotelsLliures() {
-		// TODO - falta activar excepcio
+	public HashSet<Pair> mostraHotelsLliures() throws hotelsNoLliures {
 		CtrlViatge cv = CtrlDataFactoria.INSTANCE.getCtrlViatge();
 		Viatge v = cv.get(dni, dataInici);
 		HashSet<Pair> llista = v.getLlista();
-//		if (llista.isEmpty()) activa hotelsNoLliures;
+		if (llista.isEmpty())  throw new hotelsNoLliures();
 		return llista;
 	}
 	
