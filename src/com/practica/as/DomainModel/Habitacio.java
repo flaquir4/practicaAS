@@ -6,6 +6,10 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 
 import com.practica.as.DataLayer.CmpKeyHabitacio;
 
@@ -13,7 +17,6 @@ import com.practica.as.DataLayer.CmpKeyHabitacio;
 public class Habitacio {
 	
 	private List<Viatge> viatges = new ArrayList<Viatge>();
-	
 	private CmpKeyHabitacio habitacioPK;
 	
 	@Id
@@ -22,6 +25,23 @@ public class Habitacio {
 	}
 	public void setHabitacioPK(CmpKeyHabitacio habitacioPK) {
 		this.habitacioPK = habitacioPK;
+	}
+	@ManyToMany
+	@JoinTable(name="Reserva",
+			joinColumns={
+				@JoinColumn (name="ciutat"),
+				@JoinColumn (name="hotel"),
+				@JoinColumn (name="habitacio")
+			},
+			inverseJoinColumns = {
+				@JoinColumn(name="client"),
+				@JoinColumn(name="data_inci"),
+				})
+	public List<Viatge> getViatges() {
+		return viatges;
+	}
+	public void setViatges(List<Viatge> viatges) {
+		this.viatges = viatges;
 	}
 	
 	public Integer disponible(Date di, Date df) {
@@ -37,6 +57,7 @@ public class Habitacio {
 		return nhab;
 	}
 	
+	@Transient
 	public Integer getNumero() {
 		return habitacioPK.getNumero();
 	}
