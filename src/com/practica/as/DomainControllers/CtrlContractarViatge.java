@@ -3,13 +3,16 @@ package com.practica.as.DomainControllers;
 import java.util.Date;
 import java.util.HashSet;
 
-import Excepcions.hotelsNoLliures;
-import Excepcions.jaTeViatge;
+import Excepcions.NoHiHaCiutats;
+import Excepcions.HotelsNoLliures;
+import Excepcions.JaTeViatge;
 
 import com.practica.as.Adpters.AdaptadorAutoritza;
 import com.practica.as.Adpters.Factoria;
 import com.practica.as.DataInterface.CtrlDataFactoria;
+import com.practica.as.DataLayer.CtrlCiutat;
 import com.practica.as.DataLayer.CtrlClient;
+import com.practica.as.DomainModel.Ciutat;
 import com.practica.as.DomainModel.Client;
 import com.practica.as.DomainModel.Pair;
 
@@ -24,30 +27,33 @@ public class CtrlContractarViatge {
 	private CtrlReservarHabitacio ctrlReservarHabitacio;
 	private CtrlConsultarCiutats ctrlConsultarCiutats;
 	
-	public HashSet<Pair> obteCiutats(){
+	public HashSet<Pair> obteCiutats() throws NoHiHaCiutats{
 		ctrlConsultarCiutats = new CtrlConsultarCiutats();
 		HashSet<Pair> ciutats = ctrlConsultarCiutats.obteCiutats();
 		return ciutats;
 	}
 	
-	public void enregistraViatge(String dni, Date dataInici, Date dataFi, String nom) throws jaTeViatge {
-		CtrlClient cc = CtrlDataFactoria.INSTANCE.getCtrlClient();
-		Client c = cc.get(dni);
-		c.creaViatge(nom, dataInici, dataFi);
+	public void enregistraViatge(String dni, Date dataInici, Date dataFi, String nom) throws JaTeViatge {
+		CtrlClient cClient = CtrlDataFactoria.INSTANCE.getCtrlClient();
+		CtrlCiutat cCiutat = CtrlDataFactoria.INSTANCE.getCtrlCiutat();
+		Client c = cClient.get(dni);
+		Ciutat ciutat = cCiutat.get(nom);
+		c.creaViatge( ciutat, dataInici, dataFi);
+		this.preuVol = ciutat.getPreuVol();
 		this.dni = dni;
 		this.dataInici = dataInici;
 		this.dataFi = dataFi;
 		this.nom = nom;
+	
 	}
 	
-	public HashSet<Pair> mostraHotelsLliures() throws hotelsNoLliures {
-		ctrlReservarHabitacio = new CtrlReservarHabitacio(dni, dataInici);
-		HashSet<Pair> llista = ctrlReservarHabitacio.mostraHotelsLliures();
+	public HashSet<Pair> mostraHotelsLliures() throws HotelsNoLliures {
+		ctrlReservarHabitacio = new CtrlReservarHabitacio();
+		HashSet<Pair> llista = ctrlReservarHabitacio.mostraHotelsLliures(dni, dataInici);
 		return llista;
 	}
 	
 	public float reservaHabitacio(String nomH) {
-		ctrlReservarHabitacio = new CtrlReservarHabitacio();
 		float preu = ctrlReservarHabitacio.reservaHabitacio(nomH);
 		this.preuH = preu;
 		

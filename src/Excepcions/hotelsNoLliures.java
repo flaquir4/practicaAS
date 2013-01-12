@@ -1,10 +1,10 @@
 package Excepcions;
 
-public class hotelsNoLliures extends Exception {
+public class HotelsNoLliures extends Exception {
 
-	public hotelsNoLliures(){}
+	public HotelsNoLliures(){}
 
-	public hotelsNoLliures(String message){
+	public HotelsNoLliures(String message){
 		super(message);
 	}
 }

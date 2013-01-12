@@ -12,5 +12,10 @@ public class CtrlCiutat implements ICtrlCiutat {
 		// TODO ?????
 		return null;
 	}
+	
+	public Ciutat get(String nom){
+		//TODO DBDERBY
+		return null;
+	}
 
 }

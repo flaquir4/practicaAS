@@ -38,7 +38,6 @@ public class Ciutat {
 	
 	
 	public float reservaHabitacio(String nomH, Viatge v, Date dataInici, Date dataFi){
-		// TODO - podria passar que preuH no tingui valor en acabar el bucle... // no porque si no hubiese saltado la excepcion hotels no llliures
 		boolean fi = false;
 		float preuH = 0;
 		for (int i=0; i < hotels.size() && !fi; i++) {

@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-import Excepcions.jaTeViatge;
+import Excepcions.JaTeViatge;
 @Entity
 public class Client {
 	private String dni;
@@ -49,6 +52,7 @@ public class Client {
 		this.nombreViatges = nombreViatges;
 	}
 
+	@OneToMany(targetEntity=Viatge.class,mappedBy="client", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	public List<Viatge> getViatges() {
 		return viatges;
 	}
@@ -61,18 +65,18 @@ public class Client {
 	//public void jaTeViatge borrada por corrección de la profe
 
 
-	public void creaViatge(String nom, Date dataInici, Date dataFi) throws jaTeViatge{
+	public void creaViatge(Ciutat ciutat, Date dataInici, Date dataFi) throws JaTeViatge{
 
 		for (Viatge v : viatges) {
 			boolean b = v.estaDisponible(dataInici, dataFi);
-			if (!b)throw new jaTeViatge();
+			if (!b)throw new JaTeViatge();
 		}
+		 Viatge v = new Viatge(dni, ciutat, dataInici, dataFi);
+		 nombreViatges++;
+		 viatges.add(v);
 	}
 
 
-	//TODO - por que se le pasa el dni ?????? Si en viatge no hay dni...
-	// Viatge v = new Viatge(dni, nom, dataInici, dataFi);
-	// nombreViatges++;
-	// viatges.add(v);
+
 }
 

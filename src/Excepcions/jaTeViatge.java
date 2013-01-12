@@ -1,10 +1,10 @@
 package Excepcions;
 
-public class jaTeViatge extends Exception {
+public class JaTeViatge extends Exception {
 	
-	public jaTeViatge(){}
+	public JaTeViatge(){}
 	
-	public jaTeViatge(String message){
+	public JaTeViatge(String message){
 		super(message);
 	}
 }
