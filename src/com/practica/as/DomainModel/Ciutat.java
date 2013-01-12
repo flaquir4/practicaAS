@@ -13,18 +13,16 @@ public class Ciutat {
 	private List<Hotel> hotels = new ArrayList<Hotel>();
 	
 	public HashSet<Pair> getLlista(Date dataInici, Date dataFi){
-		// TODO
-		// HashSet<Pair> llista = new HashSet<Pair>();
-		// for (Hotel h : hotels) {
-		//    Integer r = h.getNumHabDisponible(dataInici, dataFi);
-		//    if (r != null) {
-		//        String nom = h.getNom();
-		//        float preu = h.getPreu();
-		//        llista.add(new Pair(nom, preu));
-		//    }
-		// }
-		// return llista;
-		return null;
+		HashSet<Pair> llista = new HashSet<Pair>();
+		for (Hotel h : hotels) {
+			Integer r = h.getNumHabDisponible(dataInici, dataFi);
+			if (r != null) {
+				String nom = h.getNom();
+				float preu = h.getPreu();
+				llista.add(new Pair(nom, preu));
+			}
+		}
+		return llista;
 	}
 	
 	public String getNom(){
@@ -36,18 +34,19 @@ public class Ciutat {
 	}
 	
 	
-	public float reservaHabitacio(String nomH, Viatge v, Date dataInici, Date DataFi){
-		// TODO
-		// boolean fi = false;
-		// for (Hotel h : hotels && !fi) {
-		//    String nom = h.getNom();
-		//    fi = nom == nomH;
-		//    if (fi) {
-		//       float preuH = h.reservaHabitacio(v, dataInici, dataFi);
-		//    }
-		// }
-		// return preuH; // cal vigilar, i si no es retorna preuH????????
-		return 0;
+	public float reservaHabitacio(String nomH, Viatge v, Date dataInici, Date dataFi){
+		// TODO - podria passar que preuH no tingui valor en acabar el bucle... 
+		boolean fi = false;
+		float preuH = 0;
+		for (int i=0; i < hotels.size() && !fi; i++) {
+			Hotel h = hotels.get(i);
+			String nom = h.getNom();
+			fi = nom == nomH;
+			if (fi) {
+				preuH = h.reservaHabitacio(v, dataInici, dataFi);
+			}
+		}
+		return preuH;
 	}
 
 }

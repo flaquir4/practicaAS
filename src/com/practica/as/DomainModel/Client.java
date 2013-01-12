@@ -14,17 +14,17 @@ public class Client {
 	
 	//Funció que llença una excepció si el client ja te viatge.
 	public void jaTeViatge(Date di, Date df){
-		//TODO
-		// for (Viatge v : viatges) {
-		//    boolean b = v.estaDisponible(di, df);
-		//    if (!b) activa jaTeViatge;
-		// }
+		// TODO - falta activar excepcio
+		for (Viatge v : viatges) {
+			boolean b = v.estaDisponible(di, df);
+//			if (!b) activa jaTeViatge;
+		}
 	}
 	
 	public void creaViatge(String nom, Date dataInici, Date dataFi){
-		//TODO
-		// crea Viatge(self.dni, nom, dataInici, dataFi):v;
-		// self.nombreViatges++;
+		//TODO - por que se le pasa el dni ?????? Si en viatge no hay dni...
+		// Viatge v = new Viatge(dni, nom, dataInici, dataFi);
+		// nombreViatges++;
 		// viatges.add(v);
 	}
 	

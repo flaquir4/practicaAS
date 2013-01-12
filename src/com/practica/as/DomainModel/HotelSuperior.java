@@ -15,9 +15,7 @@ public class HotelSuperior extends Hotel {
 	}
 	
 	public float getSuplement() {
-		// TODO
-		// return recarrec;
-		return 0;
+		return recarrec;
 	}
 
 }

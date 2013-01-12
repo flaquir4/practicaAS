@@ -3,11 +3,9 @@ package com.practica.as.Adpters;
 public enum Factoria {
 	// SINGLETON
 	INSTANCE;
-	private IAdaptadorAutoritza iAdaptadorAutoritza;
+	private AdaptadorAutoritza adaptadorAutoritza = new AdaptadorAutoritza();
 	
 	public AdaptadorAutoritza getAdaptadorAutoritza() {
-		// TODO
-		// return iAdaptadorAutoritza;
-		return null;
+		return adaptadorAutoritza;
 	}
 }

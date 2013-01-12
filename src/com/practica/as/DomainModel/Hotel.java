@@ -39,9 +39,9 @@ public class Hotel {
 	}
 
 	public float getPreu() {
-		// TODO
+		// TODO -- las fechas de donde saleeen??????
 		// float r = self.getSuplement();
-		// return (self.preu + r) * (df - di); // las fechas de donde saleeen??????  
+		// return (self.preu + r) * (df - di);   
 		return preu;
 	}
 	public void setPreu(float preu) {
@@ -49,19 +49,16 @@ public class Hotel {
 	}
 	
 	public String getNom() {
-		// TODO
-		// return CmpKeyHotel.getNom();
-		return null;
+		return hotelPK.getNom();
 	}
 	
 	public Integer getNumHabDisponible(Date di, Date df) {
-		// TODO
-		// Integer aux;
-		// for (Habitacio h : habitacions && aux == null) {
-		//    aux = h.disponible(di, df);
-		// }
-		// return aux;
-		return null;
+		Integer aux = null;
+		for (int i=0; i < habitacions.size() && aux != null; i++) {
+			Habitacio h = habitacions.get(i);
+			aux = h.disponible(di, df);
+		}
+		return aux;
 	}
 	
 	public float getSuplement() {
@@ -69,19 +66,20 @@ public class Hotel {
 	}
 	
 	public float reservaHabitacio(Viatge v, Date di, Date df) {
-		// TODO
-		// Integer numH = self.getNumHabDisponible(di, df);
-		// boolean fi = false;
-		// for (Habitacio h : habitacions && !fi) {
-		//    int numero = h.getNumero();
-		//    fi = numH == numero;
-		//    if (fi) {
-		//       float preuH = self.getPreu();
-		//       h.setViatge(v);
-		//    }
-		// }
-		// return preuH; // ojooooo, que igual no es defineix preuH!!!!
-		return 0;
+		// TODO podria ser que preuH tenga valor 0 si nunca entra en el if
+		Integer numH = getNumHabDisponible(di, df);
+		boolean fi = false;
+		float preuH = 0;
+		for (int i=0; i < habitacions.size() && fi; i++) {
+			Habitacio h = habitacions.get(i);
+			int numero = h.getNumero();
+			fi = numH == numero;
+			if (fi) {
+				preuH = getPreu();
+				h.setViatge(v);
+			}
+		}
+		return preuH;
 	}
 
 }

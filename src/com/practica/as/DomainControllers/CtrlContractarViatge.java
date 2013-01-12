@@ -3,6 +3,11 @@ package com.practica.as.DomainControllers;
 import java.util.Date;
 import java.util.HashSet;
 
+import com.practica.as.Adpters.AdaptadorAutoritza;
+import com.practica.as.Adpters.Factoria;
+import com.practica.as.DataInterface.CtrlDataFactoria;
+import com.practica.as.DataLayer.CtrlClient;
+import com.practica.as.DomainModel.Client;
 import com.practica.as.DomainModel.Pair;
 
 public class CtrlContractarViatge {
@@ -14,52 +19,47 @@ public class CtrlContractarViatge {
 	private float preuVol;
 	private float preuH;
 	private CtrlReservarHabitacio ctrlReservarHabitacio;
+	private CtrlConsultarCiutats ctrlConsultarCiutats;
 	
 	public HashSet<Pair> obteCiutats(){
-		// TODO
-		// crea CtrlConsultarCiutats
-		// crida CtrlConsultarCiutats::obteCiutats():ciutats
-		// return ciutats
-		return null;
+		ctrlConsultarCiutats = new CtrlConsultarCiutats();
+		HashSet<Pair> ciutats = ctrlConsultarCiutats.obteCiutats();
+		return ciutats;
 	}
 	
 	public void enregistraViatge(String dni, Date dataInici, Date dataFi, String nom) {
-		//TODO
-		// CtrlClient cc = CtrlDataFactoria.INSTANCE.getCtrlClient();
-		// Client c = cc.get(dni);
-		// c.jaTeViatge(dataInici, dataFi);
-		// c.creaViatge(nom, dataInici, dataFi);
-		// self.dni = dni;
-		// self.dataInici = dataInici;
-		// self.dataFi = dataFi;
-		// self.nom = nom;
+		CtrlClient cc = CtrlDataFactoria.INSTANCE.getCtrlClient();
+		Client c = cc.get(dni);
+		c.jaTeViatge(dataInici, dataFi);
+		c.creaViatge(nom, dataInici, dataFi);
+		this.dni = dni;
+		this.dataInici = dataInici;
+		this.dataFi = dataFi;
+		this.nom = nom;
 	}
 	
 	public HashSet<Pair> mostraHotelsLliures() {
-		//TODO
-		// crea CtrlReservarHabitacio(self.dni, self.dataInici)
-		// crida CtrlReservarHabitacio::mostraHotelsLliures():llista
-		// return llista
-		return null;
+		ctrlReservarHabitacio = new CtrlReservarHabitacio(dni, dataInici);
+		HashSet<Pair> llista = ctrlReservarHabitacio.mostraHotelsLliures();
+		return llista;
 	}
 	
 	public float reservaHabitacio(String nomH) {
-		// TODO
-		// crea CtrlReservarHabitacio()
-		// crida CtrlReservarHabitacio::reservaHabitacio(nomH):preu
-		// self.preuH = preu
-		// return preu
-		return 0;
+		ctrlReservarHabitacio = new CtrlReservarHabitacio();
+		float preu = ctrlReservarHabitacio.reservaHabitacio(nomH);
+		this.preuH = preu;
+		
+		// Ho he canviat per a que retorni el import total
+		// retutn preu;
+		return preuH + preuVol;
 	}
 	
 	public boolean pagament(String numTarg, Date dC) {
-		// TODO
-		// Date dAvui = System.currentDate();
-		// float importTotal = self.preuVol + self.preuH;
-		// IAdaptadorAutoritza aa = Factoria.INSTANCE.getAdaptadorAutoritza();
-		// boolean b = aa.pagament(self.dni, numT, importTotal, dC, dAvui);
-		// return b;
-		return true;
+		Date dAvui = new Date();
+		float importTotal = this.preuVol + this.preuH;
+		AdaptadorAutoritza aa = Factoria.INSTANCE.getAdaptadorAutoritza();
+		boolean b = aa.pagament(dni, numTarg, importTotal, dC, dAvui);
+		return b;
 	}
 	
 	public float getPreuVol() {

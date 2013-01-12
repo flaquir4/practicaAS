@@ -25,28 +25,24 @@ public class Habitacio {
 	}
 	
 	public Integer disponible(Date di, Date df) {
-		// TODO
-		// boolean aux = true;
-		// Integer nhab;
-		// for (Viatge v : viatges && aux) {
-		//    aux = v.estaDisponible(di, df);
-		// }
-		// if (aux) {
-		//    nhab = self.numero;
-		// }
-		// return nhab;
-		return null;
+		boolean aux = true;
+		Integer nhab = null;
+		for (int i=0; i < viatges.size() && aux; i++) {
+			Viatge v = viatges.get(i);
+			aux = v.estaDisponible(di, df);
+		}
+		if (aux) {
+			nhab = getNumero();
+		}
+		return nhab;
 	}
 	
 	public Integer getNumero() {
-		// TODO
-		// return CmpKeyHabitacio.getNumero();
-		return null;
+		return habitacioPK.getNumero();
 	}
 	
 	public void setViatge(Viatge v) {
-		// TODO
-		// viatges.add(v);
+		viatges.add(v);
 	}
 
 }

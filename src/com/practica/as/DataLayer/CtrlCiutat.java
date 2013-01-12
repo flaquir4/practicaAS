@@ -9,8 +9,7 @@ public class CtrlCiutat implements ICtrlCiutat {
 
 	@Override
 	public HashSet<Ciutat> tots() {
-		// TODO
-		// ?????
+		// TODO ?????
 		return null;
 	}
 

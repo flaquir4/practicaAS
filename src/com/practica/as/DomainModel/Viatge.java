@@ -12,27 +12,22 @@ public class Viatge {
 	private Ciutat ciutat;
 	
 	public boolean estaDisponible(Date di, Date df) {
-		//TODO
-		// return (self.dataInici < di && self.dataFi < di) || (df < self.dataInici && df < self.dataFi);  
-		return true;
-	}
+		return dataInici.after(df) && dataFi.before(di); 
+		// return (this.dataInici < di && this.dataFi < di) || (df < this.dataInici && df < this.dataFi);
+}
 	
 	public void creaViatge(String nom, Date dataIni, Date dataFi) {
-		// TODO
+		// TODO faltaaaaa no esta en los diagramas de secuenciaa!!!!!!!!
 	}
 	
 	public float reservaHabitacio(String nomH) {
-		//TODO
-		// float preuH = self.ciutat.reservaHabitacio(nomH, self, self.dataInici, self.dataFi);
-		// return preuH;
-		return 0;
+		float preuH = ciutat.reservaHabitacio(nomH, this, dataInici, dataFi);
+		return preuH;
 	}
 	
 	
 	public HashSet<Pair> getLlista() {
-		//TODO
-		// HashSet llista = self.ciutat.getLlista(self.dataInici, self.dataFi);
-		// return llista;
-		return null;
+		HashSet<Pair> llista = ciutat.getLlista(dataInici, dataFi);
+		return llista;
 	}
 }

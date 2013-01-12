@@ -8,26 +8,20 @@ public enum CtrlDataFactoria {
 	// SINGLETON
 
 	INSTANCE;
-	private ICtrlCiutat iCtrlCiutat;
-	private ICtrlClient iCtrlClient;
-	private ICtrlViatge iCtrlViatge;
+	private CtrlCiutat ctrlCiutat = new CtrlCiutat();
+	private CtrlClient ctrlClient = new CtrlClient();
+	private CtrlViatge ctrlViatge = new CtrlViatge();
 	
 	public CtrlClient getCtrlClient() {
-		// TODO
-		// return iCtrlClient;
-		return null;
+		return ctrlClient;
 	}
 	
 	public CtrlCiutat getCtrlCiutat() {
-		// TODO
-		// return iCtrlCiutat;
-		return null;
+		return ctrlCiutat;
 	}
 	
 	public CtrlViatge getCtrlViatge() {
-		// TODO
-		// return iCtrlViatge;
-		return null;
+		return ctrlViatge;
 	}
 	
 }

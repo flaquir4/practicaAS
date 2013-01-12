@@ -9,8 +9,7 @@ public class CtrlViatge implements ICtrlViatge {
 
 	@Override
 	public Viatge get(String dni, Date dataInici) {
-		// TODO
-		// ??????
+		// TODO  ??????
 		return null;
 	}
 
