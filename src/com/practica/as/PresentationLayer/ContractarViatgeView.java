@@ -23,7 +23,7 @@ public class ContractarViatgeView {
 		// Text Input: dni (cal posar-lo)
 		// Date Input: data inici (cal posar-la)
 		// Date input: data fi (cal posar-la)
-		// Boto: Començar -> controlador.OKenregistrarViatge();
+		// Boto: Començar -> controlador.OKenregistrarViatge(ciutat, dni, data inici, data fi);
 		// Boto: Cancel·lar -> controlador.sortir();
 	}
 	
@@ -38,7 +38,7 @@ public class ContractarViatgeView {
 	public void mostraHotelsIPreus(HashSet<Pair> hotelsPreus) {
 		// TODO
 		// Llistat: hotels i preus (Cal seleccionar una fila)
-		// Boto: Continuar -> controlador.OKreservaHabitacio();
+		// Boto: Continuar -> controlador.OKreservaHabitacio(hotel);
 		// Boto: Cancel·lar -> controlador.sortir();
 	}
 	
@@ -47,7 +47,7 @@ public class ContractarViatgeView {
 		// Label: import total
 		// Text input: numero targeta (cal posar-lo)
 		// Text input: data caducitat (cal posar-la)
-		// Boto: Continuar -> controlador.OKpagament();
+		// Boto: Continuar -> controlador.OKpagament(num targeta, data caducitat);
 		// Boto: Cancel·lar -> controlador.sortir();
 	}
 	
@@ -61,10 +61,9 @@ public class ContractarViatgeView {
 		// TODO
 		// Dialeg: mostra "error"
 		// Boto: OK -> tanca dialeg i segons quin, sortir o mostra vista anterior:
-		// 	Si error = "Client no existeix" -> controlador.contractar() o this.mostraCiutatsIPreus()
-		// 	Si error = "Ja té viatge" -> controlador.contractar() o this.mostraCiutatsIPreus()
-		// 	Si error = "Hotels no lliures" -> controlador.pagament() o this.mostraPagament()
-		// 	Si no -> controlador.sortir()
+		// 	if (error == "Client no existeix" or error == "Ja té viatge" or error == "Hotels no lliures")
+		// 		-> tancar dialeg o controlador.contractar()
+		// 	else -> controlador.sortir()
 	}
 	
 	public void tancar() {

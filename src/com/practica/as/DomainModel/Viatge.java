@@ -18,7 +18,7 @@ import com.practica.as.DataLayer.CmpKeyViatge;
 
 
 @Entity
-@Check(constraints = "dataFi>dataInici")
+//@Check(constraints = "dataFi > dataInici")
 public class Viatge {
 
 	private CmpKeyViatge viatgePK;
@@ -55,7 +55,7 @@ public class Viatge {
 	public Date getDataInici() {
 		return viatgePK.getDataInici();
 	}
-
+	@Transient
 	public void setDataInici(Date dataInici) {
 		this.viatgePK.setDataInici(dataInici);
 	}

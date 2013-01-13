@@ -74,7 +74,12 @@ public class MainDePruebas {
 		CtrlContractarViatge  ctrl = new CtrlContractarViatge();
 		try {
 			ctrl.obteCiutats();
-			ctrl.enregistraViatge("4356", new Date(), new Date(), "Roma");
+			Date d1 = new Date();
+			long time = d1.getTime();
+			System.out.println(time);
+			Date d2 = new Date();
+			d2.setTime(time+1);
+			ctrl.enregistraViatge("4356", d1, d2, "Roma");
 		} catch (NoHiHaCiutats e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

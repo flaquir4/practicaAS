@@ -13,6 +13,7 @@ import com.practica.as.Adpters.Factoria;
 import com.practica.as.DataInterface.CtrlDataFactoria;
 import com.practica.as.DataLayer.CtrlCiutat;
 import com.practica.as.DataLayer.CtrlClient;
+import com.practica.as.DataLayer.CtrlViatge;
 import com.practica.as.DomainModel.Ciutat;
 import com.practica.as.DomainModel.Client;
 import com.practica.as.DomainModel.Pair;
@@ -41,6 +42,9 @@ public class CtrlContractarViatge {
 		Client c = cClient.get(dni);
 
 		c.creaViatge(ciutat, dataInici, dataFi);
+		CtrlViatge cViatge = CtrlDataFactoria.INSTANCE.getCtrlViatge();
+		cViatge.insert(c, ciutat, dataInici, dataFi);
+		
 		this.preuVol = ciutat.getPreuVol();
 		this.dni = dni;
 		this.dataInici = dataInici;
