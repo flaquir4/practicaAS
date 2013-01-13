@@ -6,3 +6,5 @@
 *.ear
 .classpath
 bin/**
+src/hibernate.cfg.xml
+src/log4j.properties
