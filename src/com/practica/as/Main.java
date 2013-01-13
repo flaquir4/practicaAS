@@ -56,11 +56,21 @@ public class Main {
 		c1.setNom("nom1");
 		c1.setNombreViatges(1);
 		c1.setTlfn("tlfn1");
-
-		Viatge v1 = new Viatge(c1, ciutat, new Date(), new Date());
+		
+		Date d2 = new Date();
+		d2.setYear(2011);
+		Date d3 = new Date();
+		d3.setYear(2013);
+		d2.setDate(1);
+		d3.setDate(2);
+		Viatge v1 = new Viatge(c1, ciutat, d2, d3);
 		Date d = new Date();
 		d.setYear(2012);
-		Viatge v2 = new Viatge(c1, ciutat, d, d);
+		Date d1 = new Date();
+		d1.setYear(2013);
+		d.setDate(1);
+		d.setDate(2);
+		Viatge v2 = new Viatge(c1, ciutat, d, d1);
 		
 		session.save(ciutat);
 		session.save(h1);

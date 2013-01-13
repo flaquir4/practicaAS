@@ -17,7 +17,7 @@ import org.hibernate.annotations.Check;
 
 @Entity
 @Table(name ="CIUTAT")
-
+@Check(constraints = "preuvol>0")
 public class Ciutat {
 
 	private String nom;
@@ -87,9 +87,4 @@ public class Ciutat {
 		return preuH;
 	}
 
-}
-
-@PrePersist
-private void preuvolpositiu(){
-	preuVol>0;
 }

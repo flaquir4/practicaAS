@@ -3,7 +3,10 @@ package com.practica.as.DomainModel;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Check;
+
 @Entity
+@Check(constraints = "descompte>0")
 public class HotelLowCost extends Hotel {
 	
 	private float descompte;

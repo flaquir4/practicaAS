@@ -4,10 +4,12 @@ import java.util.Date;
 import java.util.HashSet;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.Check;
@@ -16,7 +18,7 @@ import com.practica.as.DataLayer.CmpKeyViatge;
 
 
 @Entity
-//TODO CHECK DATAFI>DATAINICI
+@Check(constraints = "dataFi>dataInici")
 public class Viatge {
 
 	private CmpKeyViatge viatgePK;
@@ -57,7 +59,7 @@ public class Viatge {
 	public void setDataInici(Date dataInici) {
 		this.viatgePK.setDataInici(dataInici);
 	}
-
+	@Temporal(TemporalType.DATE)
 	public Date getDataFi() {
 		return dataFi;
 	}
@@ -67,6 +69,7 @@ public class Viatge {
 	}
 
 	@ManyToOne(cascade=CascadeType.ALL)
+	@Column(nullable=false)
 	public Ciutat getCiutat() {
 		return ciutat;
 	}

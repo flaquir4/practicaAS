@@ -11,9 +11,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Check;
+
 import com.practica.as.DataLayer.CmpKeyHabitacio;
 
 @Entity
+@Check (constraints = "numero>0")
 public class Habitacio {
 	
 	private List<Viatge> viatges = new ArrayList<Viatge>();

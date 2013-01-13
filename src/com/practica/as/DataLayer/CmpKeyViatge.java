@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.practica.as.DomainModel.Client;
 
@@ -33,7 +35,7 @@ public class CmpKeyViatge implements Serializable {
 	public Client getClient() {
 		return client;
 	}
-
+	
 	public void setClient(Client client) {
 		this.client = client;
 	}
@@ -47,7 +49,7 @@ public class CmpKeyViatge implements Serializable {
 //	public void setDni(String dni) {
 //		this.dni = dni;
 //	}
-	
+	@Temporal(TemporalType.DATE)
 	public Date getDataInici() {
 		return dataInici;
 	}
