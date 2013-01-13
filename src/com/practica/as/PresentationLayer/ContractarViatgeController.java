@@ -3,6 +3,11 @@ package com.practica.as.PresentationLayer;
 import java.util.Date;
 import java.util.HashSet;
 
+import Excepcions.HotelsNoLliures;
+import Excepcions.JaTeViatge;
+import Excepcions.NoHiHaCiutats;
+import Excepcions.ServeiNoDisponible;
+
 import com.practica.as.DomainControllers.CtrlContractarViatge;
 import com.practica.as.DomainModel.Pair;
 
@@ -12,35 +17,30 @@ public class ContractarViatgeController {
 	private ContractarViatgeView vista = new ContractarViatgeView();
 	
 	public void contractar() {
-		// TODO - falta la transmision de las excepciones
-//		HashSet<Pair> ciutatsPreus = ctrlContractarViatge.obteCiutats();
-//		if (noHiHaCiutats) {
-//			vista.mostraError("No hi ha ciutats");
-//		} else {
-//			vista.mostraCiutatsIPreus(ciutatsPreus);
-//		}
+		try {
+			HashSet<Pair> ciutatsPreus = ctrlContractarViatge.obteCiutats();
+			vista.mostraCiutatsIPreus(ciutatsPreus);
+		} catch (NoHiHaCiutats e) {
+			vista.mostraError("No hi ha ciutats");			
+		}
 	}
 	
 	public void OKenregistrarViatge(String ciutat, String dni, Date dIni, Date dFi) {
-		// TODO - falta la transmision de las excepciones
-//		ctrlContractarViatge.enregistraViatge(dni, dIni, dFi, ciutat);
-//		if (clientNoExisteix) {
-//			vista.mostraError("Client no existeix");
-//		} else if (jaTeViatge) {
-//			vista.mostraError("Ja té viatge");
-//		} else {
-//			vista.mostraEscullPagarOReservarHabitacio();
-//		}
+		try {
+			ctrlContractarViatge.enregistraViatge(dni, dIni, dFi, ciutat);
+			vista.mostraEscullPagarOReservarHabitacio();
+		} catch (JaTeViatge e) {
+			vista.mostraError("Client no existeix");
+		}
 	}
 	
 	public void reservaHabitacio() {
-		// TODO - falta la transmision de las excepciones
-//		HashSet<Pair> hotelsPreus = ctrlContractarViatge.mostraHotelsLliures();
-//		if (hotelsNoLliures) {
-//			vista.mostraError("No hi ha hotels lliures");
-//		} else {
-//			vista.mostraHotelsIPreus(hotelsPreus);
-//		}
+		try {
+			HashSet<Pair> hotelsPreus = ctrlContractarViatge.mostraHotelsLliures();
+			vista.mostraHotelsIPreus(hotelsPreus);
+		} catch (HotelsNoLliures e) {
+			vista.mostraError("No hi ha hotels lliures");
+		}
 	}
 	
 	public void OKreservaHabitacio(String nomHotel) {
@@ -54,15 +54,16 @@ public class ContractarViatgeController {
 	}
 	
 	public void OKpagament(String numTargeta, Date dataCad) {
-		// TODO - falta la transmision de las excepciones
-//		boolean efectuat = ctrlContractarViatge.pagament(numTargeta, dataCad);
-//		if (serveiNoDisponible) {
-//			vista.mostraError("Servei de pagament no disponible");
-//		} else if (!efectuat) {
-//			vista.mostraError("Pagament no efectuat");
-//		} else {
-//			vista.mostraFiContracte();
-//		}
+		try {
+			boolean efectuat = ctrlContractarViatge.pagament(numTargeta, dataCad);
+			if (efectuat) {
+				vista.mostraFiContracte();	
+			} else {
+				vista.mostraError("Pagament no efectuat");	
+			}
+		} catch (ServeiNoDisponible e) {
+			vista.mostraError("Servei de pagament no disponible");
+		}
 	}
 	
 	public void sortir() {

@@ -20,28 +20,33 @@ import com.practica.as.DomainModel.Hotel;
 import com.practica.as.DomainModel.HotelLowCost;
 import com.practica.as.DomainModel.HotelSuperior;
 import com.practica.as.DomainModel.Viatge;
+import com.practica.as.PresentationLayer.ContractarViatgeController;
 
 public class Main {
 
 	public static void main(String[] args) {
-		AnnotationConfiguration config = new AnnotationConfiguration();
-		config.addAnnotatedClass(Hotel.class);
-		config.addAnnotatedClass(HotelSuperior.class);
-		config.addAnnotatedClass(HotelLowCost.class);
-		config.addAnnotatedClass(Habitacio.class);
-		config.addAnnotatedClass(Client.class);
-		config.addAnnotatedClass(Viatge.class);
-		config.addAnnotatedClass(Ciutat.class);
-		config.configure("hibernate.cfg.xml");
+		ContractarViatgeController c = new ContractarViatgeController();
+		c.contractar();
+	}	
 		
-		new SchemaExport(config).create(true, true);
-		
-		SessionFactory factory = config.buildSessionFactory();
-		
-		// Session per provar setters:
-		
-		Session session = factory.getCurrentSession();
-		session.beginTransaction();
+//		AnnotationConfiguration config = new AnnotationConfiguration();
+//		config.addAnnotatedClass(Hotel.class);
+//		config.addAnnotatedClass(HotelSuperior.class);
+//		config.addAnnotatedClass(HotelLowCost.class);
+//		config.addAnnotatedClass(Habitacio.class);
+//		config.addAnnotatedClass(Client.class);
+//		config.addAnnotatedClass(Viatge.class);
+//		config.addAnnotatedClass(Ciutat.class);
+//		config.configure("hibernate.cfg.xml");
+//		
+//		new SchemaExport(config).create(true, true);
+//		
+//		SessionFactory factory = config.buildSessionFactory();
+//		
+//		// Session per provar setters:
+//		
+//		Session session = factory.getCurrentSession();
+//		session.beginTransaction();
 		
 //		Ciutat ciutat = new Ciutat();
 //		ciutat.setNom("ciutat");
@@ -139,41 +144,43 @@ public class Main {
 //			System.out.print(v.getCiutat().getNom());
 //			System.out.println();
 //		}
-		Ciutat venecia= new Ciutat ();
-		venecia.setNom("Venecia");
-		venecia.setDescripcio("Canales");
-		venecia.setPreuVol(5);
-		Ciutat Paris= new Ciutat ();
-		Paris.setNom("Paris");
-		Paris.setDescripcio("Amor");
-		Paris.setPreuVol(10);
-		Ciutat roma= new Ciutat ();
-		roma.setNom("Roma");
-		roma.setDescripcio("Gladiadores");
-		roma.setPreuVol(10);
-		session.save(venecia);
-		session.save(roma);
-		session.save(Paris);
-		
-		Client pepe = new Client();
-		pepe.setDni("4356");
-		pepe.setNom("PEPE");
-		pepe.setNombreViatges(2);
-		session.save(pepe);
-		session.getTransaction().commit();
-		
+//
+//		Ciutat venecia= new Ciutat ();
+//		venecia.setNom("Venecia");
+//		venecia.setDescripcio("Canales");
+//		venecia.setPreuVol(5);
+//		Ciutat Paris= new Ciutat ();
+//		Paris.setNom("Paris");
+//		Paris.setDescripcio("Amor");
+//		Paris.setPreuVol(10);
+//		Ciutat roma= new Ciutat ();
+//		roma.setNom("Roma");
+//		roma.setDescripcio("Gladiadores");
+//		roma.setPreuVol(10);
+//		session.save(venecia);
+//		session.save(roma);
+//		session.save(Paris);
+//		
+//		Client pepe = new Client();
+//		pepe.setDni("4356");
+//		pepe.setNom("PEPE");
+//		pepe.setNombreViatges(2);
+//		session.save(pepe);
+//		session.getTransaction().commit();
+//		
+//
+//		CtrlContractarViatge  ctrl = new CtrlContractarViatge();
+//		try {
+//			ctrl.obteCiutats();
+//			ctrl.enregistraViatge("4356", new Date(), new Date(), "Roma");
+//		} catch (NoHiHaCiutats e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (JaTeViatge e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
-		CtrlContractarViatge  ctrl = new CtrlContractarViatge();
-		try {
-			ctrl.obteCiutats();
-			ctrl.enregistraViatge("4356", new Date(), new Date(), "Roma");
-		} catch (NoHiHaCiutats e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JaTeViatge e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 				
 //		Hotel hotel1 = new Hotel();
 //		CmpKeyHotel hotelKey1 = new CmpKeyHotel("Barcelona", "Marina");
@@ -245,6 +252,6 @@ public class Main {
 //				
 //		session.getTransaction().commit();
 		
-	}
+//	}
 
 }
