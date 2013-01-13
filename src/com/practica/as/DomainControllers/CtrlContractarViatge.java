@@ -40,7 +40,7 @@ public class CtrlContractarViatge {
 		Ciutat ciutat = cCiutat.get(nom);
 		Client c = cClient.get(dni);
 
-		c.creaViatge( ciutat, dataInici, dataFi);
+		c.creaViatge(ciutat, dataInici, dataFi);
 		this.preuVol = ciutat.getPreuVol();
 		this.dni = dni;
 		this.dataInici = dataInici;
