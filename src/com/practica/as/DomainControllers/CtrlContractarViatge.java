@@ -3,9 +3,10 @@ package com.practica.as.DomainControllers;
 import java.util.Date;
 import java.util.HashSet;
 
-import Excepcions.NoHiHaCiutats;
 import Excepcions.HotelsNoLliures;
 import Excepcions.JaTeViatge;
+import Excepcions.NoHiHaCiutats;
+import Excepcions.ServeiNoDisponible;
 
 import com.practica.as.Adpters.AdaptadorAutoritza;
 import com.practica.as.Adpters.Factoria;
@@ -62,7 +63,7 @@ public class CtrlContractarViatge {
 		return preuH + preuVol;
 	}
 	
-	public boolean pagament(String numTarg, Date dC) {
+	public boolean pagament(String numTarg, Date dC) throws ServeiNoDisponible {
 		Date dAvui = new Date();
 		float importTotal = this.preuVol + this.preuH;
 		AdaptadorAutoritza aa = Factoria.INSTANCE.getAdaptadorAutoritza();

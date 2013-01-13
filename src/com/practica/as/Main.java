@@ -1,46 +1,32 @@
 package com.practica.as;
 
-import java.util.Date;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.tool.hbm2ddl.SchemaExport;
-
-import Excepcions.NoHiHaCiutats;
-
-import com.practica.as.DataLayer.CmpKeyHabitacio;
-import com.practica.as.DataLayer.CmpKeyHotel;
-import com.practica.as.DomainControllers.CtrlContractarViatge;
-import com.practica.as.DomainModel.Ciutat;
-import com.practica.as.DomainModel.Client;
-import com.practica.as.DomainModel.Habitacio;
-import com.practica.as.DomainModel.Hotel;
-import com.practica.as.DomainModel.HotelLowCost;
-import com.practica.as.DomainModel.HotelSuperior;
-import com.practica.as.DomainModel.Viatge;
+import com.practica.as.PresentationLayer.ContractarViatgeController;
 
 public class Main {
 
 	public static void main(String[] args) {
-		AnnotationConfiguration config = new AnnotationConfiguration();
-		config.addAnnotatedClass(Hotel.class);
-		config.addAnnotatedClass(HotelSuperior.class);
-		config.addAnnotatedClass(HotelLowCost.class);
-		config.addAnnotatedClass(Habitacio.class);
-		config.addAnnotatedClass(Client.class);
-		config.addAnnotatedClass(Viatge.class);
-		config.addAnnotatedClass(Ciutat.class);
-		config.configure("hibernate.cfg.xml");
+		ContractarViatgeController c = new ContractarViatgeController();
+		c.contractar();
+	}	
 		
-		new SchemaExport(config).create(true, true);
-		
-		SessionFactory factory = config.buildSessionFactory();
-		
-		// Session per provar setters:
-		
-		Session session = factory.getCurrentSession();
-		session.beginTransaction();
+//		AnnotationConfiguration config = new AnnotationConfiguration();
+//		config.addAnnotatedClass(Hotel.class);
+//		config.addAnnotatedClass(HotelSuperior.class);
+//		config.addAnnotatedClass(HotelLowCost.class);
+//		config.addAnnotatedClass(Habitacio.class);
+//		config.addAnnotatedClass(Client.class);
+//		config.addAnnotatedClass(Viatge.class);
+//		config.addAnnotatedClass(Ciutat.class);
+//		config.configure("hibernate.cfg.xml");
+//		
+//		new SchemaExport(config).create(true, true);
+//		
+//		SessionFactory factory = config.buildSessionFactory();
+//		
+//		// Session per provar setters:
+//		
+//		Session session = factory.getCurrentSession();
+//		session.beginTransaction();
 		
 //		Ciutat ciutat = new Ciutat();
 //		ciutat.setNom("ciutat");
@@ -138,31 +124,34 @@ public class Main {
 //			System.out.print(v.getCiutat().getNom());
 //			System.out.println();
 //		}
-		Ciutat venecia= new Ciutat ();
-		venecia.setNom("Venecia");
-		venecia.setDescripcio("Canales");
-		venecia.setPreuVol(5);
-		Ciutat Paris= new Ciutat ();
-		Paris.setNom("Paris");
-		Paris.setDescripcio("Amor");
-		Paris.setPreuVol(10);
-		Ciutat roma= new Ciutat ();
-		roma.setNom("Roma");
-		roma.setDescripcio("Gladiadores");
-		roma.setPreuVol(10);
-		session.save(venecia);
-		session.save(roma);
-		session.save(Paris);
-		session.getTransaction().commit();
-		
-
-		CtrlContractarViatge  ctrl = new CtrlContractarViatge();
-		try {
-			ctrl.obteCiutats();
-		} catch (NoHiHaCiutats e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		Ciutat venecia= new Ciutat ();
+//		venecia.setNom("Venecia");
+//		venecia.setDescripcio("Canales");
+//		venecia.setPreuVol(5);
+//		
+//		Ciutat Paris= new Ciutat ();
+//		Paris.setNom("Paris");
+//		Paris.setDescripcio("Amor");
+//		Paris.setPreuVol(10);
+//		
+//		Ciutat roma= new Ciutat ();
+//		roma.setNom("Roma");
+//		roma.setDescripcio("Gladiadores");
+//		roma.setPreuVol(10);
+//		
+//		session.save(venecia);
+//		session.save(roma);
+//		session.save(Paris);
+//		session.getTransaction().commit();
+//		
+//
+//		CtrlContractarViatge  ctrl = new CtrlContractarViatge();
+//		try {
+//			ctrl.obteCiutats();
+//		} catch (NoHiHaCiutats e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 				
 //		Hotel hotel1 = new Hotel();
 //		CmpKeyHotel hotelKey1 = new CmpKeyHotel("Barcelona", "Marina");
@@ -234,6 +223,6 @@ public class Main {
 //				
 //		session.getTransaction().commit();
 		
-	}
+//	}
 
 }
