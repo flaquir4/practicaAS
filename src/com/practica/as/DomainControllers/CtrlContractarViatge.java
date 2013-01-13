@@ -36,8 +36,9 @@ public class CtrlContractarViatge {
 	public void enregistraViatge(String dni, Date dataInici, Date dataFi, String nom) throws JaTeViatge {
 		CtrlClient cClient = CtrlDataFactoria.INSTANCE.getCtrlClient();
 		CtrlCiutat cCiutat = CtrlDataFactoria.INSTANCE.getCtrlCiutat();
-		Client c = cClient.get(dni);
 		Ciutat ciutat = cCiutat.get(nom);
+		Client c = cClient.get(dni);
+
 		c.creaViatge( ciutat, dataInici, dataFi);
 		this.preuVol = ciutat.getPreuVol();
 		this.dni = dni;

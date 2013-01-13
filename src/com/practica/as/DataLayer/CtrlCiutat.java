@@ -48,8 +48,11 @@ public class CtrlCiutat implements ICtrlCiutat {
 	}
 	
 	public Ciutat get(String nom){
-		//TODO DBDERBY
-		return null;
+		Session session = factory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		Ciutat q = (Ciutat) session.get(Ciutat.class, nom);
+		tx.commit();
+		return q;
 	}
 
 }

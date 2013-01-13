@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
+import Excepcions.JaTeViatge;
 import Excepcions.NoHiHaCiutats;
 
 import com.practica.as.DataLayer.CmpKeyHabitacio;
@@ -153,13 +154,23 @@ public class Main {
 		session.save(venecia);
 		session.save(roma);
 		session.save(Paris);
+		
+		Client pepe = new Client();
+		pepe.setDni("4356");
+		pepe.setNom("PEPE");
+		pepe.setNombreViatges(2);
+		session.save(pepe);
 		session.getTransaction().commit();
 		
 
 		CtrlContractarViatge  ctrl = new CtrlContractarViatge();
 		try {
 			ctrl.obteCiutats();
+			ctrl.enregistraViatge("4356", new Date(), new Date(), "Roma");
 		} catch (NoHiHaCiutats e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JaTeViatge e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
