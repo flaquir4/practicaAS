@@ -1,6 +1,7 @@
 package com.practica.as.DomainControllers;
 
 import java.util.HashSet;
+import java.util.List;
 
 import Excepcions.NoHiHaCiutats;
 
@@ -14,10 +15,11 @@ public class CtrlConsultarCiutats {
 	public HashSet<Pair> obteCiutats() throws NoHiHaCiutats {
 		HashSet<Pair> resultat = new HashSet<Pair>();
 		CtrlCiutat c = CtrlDataFactoria.INSTANCE.getCtrlCiutat();
-		HashSet<Ciutat> ll = c.tots();
+		List<Ciutat> ll = c.tots();
 		if (ll.isEmpty()) throw new NoHiHaCiutats();
 		for (Ciutat l : ll) {
 			String nom = l.getNom();
+			System.out.println(l.getNom());
 			float preuV = l.getPreuVol();
 			resultat.add(new Pair(nom, preuV));
 		}

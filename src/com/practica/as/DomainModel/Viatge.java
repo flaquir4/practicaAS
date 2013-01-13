@@ -69,7 +69,7 @@ public class Viatge {
 	}
 
 	@ManyToOne(cascade=CascadeType.ALL)
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	public Ciutat getCiutat() {
 		return ciutat;
 	}
