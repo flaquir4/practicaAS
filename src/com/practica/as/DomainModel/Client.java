@@ -58,7 +58,7 @@ public class Client {
 	}
 
 	
-	@OneToMany(targetEntity=Viatge.class, mappedBy="viatgePK.client", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToMany(targetEntity=Viatge.class, mappedBy="viatgePK.client", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	public List<Viatge> getViatges() {
 		return viatges;
 	}
@@ -67,17 +67,13 @@ public class Client {
 		this.viatges = viatges;
 	}
 
-	public void creaViatge(Ciutat ciutat, Date dataInici, Date dataFi) throws JaTeViatge{
-		if(viatges.equals(null)){
-			viatges.isEmpty();
-			viatges = new ArrayList<Viatge>();
+	public void creaViatge(Ciutat ciutat, Date dataInici, Date dataFi) throws JaTeViatge {
+		for (Viatge v : viatges) {
+			boolean b = v.estaDisponible(dataInici, dataFi);
+			if (!b) throw new JaTeViatge();
 		}
-			for (Viatge v : viatges) {
-				boolean b = v.estaDisponible(dataInici, dataFi);
-				if (!b) throw new JaTeViatge();
-			}
 		
-		//		Viatge v = new Viatge(dni, ciutat, dataInici, dataFi);
+		// Viatge v = new Viatge(dni, ciutat, dataInici, dataFi);
 		Viatge v = new Viatge(this, ciutat, dataInici, dataFi);
 		nombreViatges++;
 		viatges.add(v);

@@ -36,7 +36,56 @@ public class MainDePruebas {
 		new SchemaExport(config).create(true, true);
 		
 		SessionFactory factory = config.buildSessionFactory();
-//		
+
+		
+		
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+
+		Ciutat venecia= new Ciutat ();
+		venecia.setNom("Venecia");
+		venecia.setDescripcio("Canales");
+		venecia.setPreuVol(5);
+		
+		Ciutat Paris= new Ciutat ();
+		Paris.setNom("Paris");
+		Paris.setDescripcio("Amor");
+		Paris.setPreuVol(10);
+		
+		Ciutat roma= new Ciutat ();
+		roma.setNom("Roma");
+		roma.setDescripcio("Gladiadores");
+		roma.setPreuVol(10);
+		
+		session.save(venecia);
+		session.save(roma);
+		session.save(Paris);
+		
+		Client pepe = new Client();
+		pepe.setDni("4356");
+		pepe.setNom("PEPE");
+		pepe.setNombreViatges(2);
+		
+		session.save(pepe);
+		
+		session.getTransaction().commit();
+		
+
+		CtrlContractarViatge  ctrl = new CtrlContractarViatge();
+		try {
+			ctrl.obteCiutats();
+			ctrl.enregistraViatge("4356", new Date(), new Date(), "Roma");
+		} catch (NoHiHaCiutats e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JaTeViatge e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		
+		//		
 //		// Session per provar setters:
 //		
 //		Session session = factory.getCurrentSession();
@@ -139,51 +188,6 @@ public class MainDePruebas {
 //			System.out.println();
 //		}
 //
-		
-		Session session = factory.getCurrentSession();
-		session.beginTransaction();
-
-		Ciutat venecia= new Ciutat ();
-		venecia.setNom("Venecia");
-		venecia.setDescripcio("Canales");
-		venecia.setPreuVol(5);
-		
-		Ciutat Paris= new Ciutat ();
-		Paris.setNom("Paris");
-		Paris.setDescripcio("Amor");
-		Paris.setPreuVol(10);
-		
-		Ciutat roma= new Ciutat ();
-		roma.setNom("Roma");
-		roma.setDescripcio("Gladiadores");
-		roma.setPreuVol(10);
-		
-		session.save(venecia);
-		session.save(roma);
-		session.save(Paris);
-		
-		Client pepe = new Client();
-		pepe.setDni("4356");
-		pepe.setNom("PEPE");
-		pepe.setNombreViatges(2);
-		
-		session.save(pepe);
-		
-		session.getTransaction().commit();
-		
-
-		CtrlContractarViatge  ctrl = new CtrlContractarViatge();
-		try {
-			ctrl.obteCiutats();
-			ctrl.enregistraViatge("4356", new Date(), new Date(), "Roma");
-		} catch (NoHiHaCiutats e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JaTeViatge e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 				
 //		Hotel hotel1 = new Hotel();
 //		CmpKeyHotel hotelKey1 = new CmpKeyHotel("Barcelona", "Marina");

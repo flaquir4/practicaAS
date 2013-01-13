@@ -16,6 +16,10 @@ public class ContractarViatgeController {
 	private CtrlContractarViatge ctrlContractarViatge = new CtrlContractarViatge();
 	private ContractarViatgeView vista = new ContractarViatgeView();
 	
+	public void iniciarContractar() {
+		vista.mostraIniciarContractar();
+	}
+	
 	public void contractar() {
 		try {
 			HashSet<Pair> ciutatsPreus = ctrlContractarViatge.obteCiutats();

@@ -28,7 +28,7 @@ public class CtrlContractarViatge {
 	private CtrlReservarHabitacio ctrlReservarHabitacio;
 	private CtrlConsultarCiutats ctrlConsultarCiutats;
 	
-	public HashSet<Pair> obteCiutats() throws NoHiHaCiutats{
+	public HashSet<Pair> obteCiutats() throws NoHiHaCiutats {
 		ctrlConsultarCiutats = new CtrlConsultarCiutats();
 		HashSet<Pair> ciutats = ctrlConsultarCiutats.obteCiutats();
 		return ciutats;
