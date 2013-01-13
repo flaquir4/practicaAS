@@ -7,25 +7,36 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.Check;
 
 import com.practica.as.DataLayer.CmpKeyViatge;
 
 
 @Entity
+//TODO CHECK DATAFI>DATAINICI
 public class Viatge {
 
-	//public Date dataInici;
 	private CmpKeyViatge viatgePK;
 	private Date dataFi;
 	private Ciutat ciutat;
-	//private String dni;
 
-	public Viatge(String dni, Ciutat ciutat, Date dataIni, Date dataFi) {
+	public Viatge(){}
+	
+//	public Viatge(String dni, Ciutat ciutat, Date dataIni, Date dataFi) {
+//		this.dataFi = dataFi;
+//		this.viatgePK = new CmpKeyViatge();
+//		this.viatgePK.setDataInici(dataIni);
+//		this.viatgePK.setDni(dni);
+//		this.ciutat = ciutat;
+//	}
+	public Viatge(Client client, Ciutat ciutat, Date dataIni, Date dataFi) {
 		this.dataFi = dataFi;
 		this.viatgePK = new CmpKeyViatge();
 		this.viatgePK.setDataInici(dataIni);
-		this.viatgePK.setDni(dni);
+		this.viatgePK.setClient(client);
 		this.ciutat = ciutat;
 	}
 
@@ -64,14 +75,14 @@ public class Viatge {
 		this.ciutat = ciutat;
 	}
 
-	@Transient
-	public String getDni() {
-		return viatgePK.getDni();
-	}
-
-	public void setDni(String dni) {
-		this.viatgePK.setDni(dni);
-	}
+//	@Transient
+//	public String getDni() {
+//		return viatgePK.getDni();
+//	}
+//
+//	public void setDni(String dni) {
+//		this.viatgePK.setDni(dni);
+//	}
 
 
 	public boolean estaDisponible(Date di, Date df) {
@@ -87,4 +98,7 @@ public class Viatge {
 		HashSet<Pair> llista = ciutat.getLlista(getDataInici(), dataFi);
 		return llista;
 	}
+	
+
+	
 }

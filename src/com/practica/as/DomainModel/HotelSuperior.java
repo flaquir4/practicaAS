@@ -1,6 +1,7 @@
 package com.practica.as.DomainModel;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 @Entity
 public class HotelSuperior extends Hotel {
@@ -14,6 +15,7 @@ public class HotelSuperior extends Hotel {
 		this.recarrec = recarrec;
 	}
 	
+	@Transient
 	public float getSuplement() {
 		return recarrec;
 	}

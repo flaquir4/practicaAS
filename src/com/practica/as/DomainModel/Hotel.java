@@ -11,11 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.Check;
 
 import com.practica.as.DataLayer.CmpKeyHotel;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
+@Check(constraints="preu>0")
 public class Hotel {
 	
 	private CmpKeyHotel hotelPK;
@@ -37,7 +41,10 @@ public class Hotel {
 	public void setHabitacions(List<Habitacio> habitacions) {
 		this.habitacions = habitacions;
 	}
-
+	public float getPreu(){
+		return preu;
+	}
+	@Transient
 	public float getPreu(Date di, Date df) {
 		float r = getSuplement();
 		int dies = (df.getYear() - di.getYear())*365 + (df.getMonth() - di.getMonth())*30 + (df.getDate() - di.getDate());
@@ -47,10 +54,12 @@ public class Hotel {
 		this.preu = preu;
 	}
 	
+	@Transient
 	public String getNom() {
 		return hotelPK.getNom();
 	}
 	
+	@Transient
 	public Integer getNumHabDisponible(Date di, Date df) {
 		Integer aux = null;
 		for (int i=0; i < habitacions.size() && aux != null; i++) {
@@ -60,6 +69,7 @@ public class Hotel {
 		return aux;
 	}
 	
+	@Transient
 	public float getSuplement() {
 		return 0;
 	}
