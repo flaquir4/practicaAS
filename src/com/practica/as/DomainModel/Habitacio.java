@@ -2,8 +2,11 @@ package com.practica.as.DomainModel;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -19,7 +22,7 @@ import com.practica.as.DataLayer.CmpKeyHabitacio;
 @Check (constraints = "numero>0")
 public class Habitacio {
 	
-	private List<Viatge> viatges = new ArrayList<Viatge>();
+	private Set<Viatge> viatges = new HashSet<Viatge>();
 	private CmpKeyHabitacio habitacioPK;
 	
 	@Id
@@ -29,8 +32,8 @@ public class Habitacio {
 	public void setHabitacioPK(CmpKeyHabitacio habitacioPK) {
 		this.habitacioPK = habitacioPK;
 	}
-	@ManyToMany
-	@JoinTable(name="Reserva",
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="Reserva", 
 			joinColumns={
 				@JoinColumn (name="ciutat"),
 				@JoinColumn (name="hotel"),
@@ -40,18 +43,19 @@ public class Habitacio {
 				@JoinColumn(name="client"),
 				@JoinColumn(name="data_inci"),
 				})
-	public List<Viatge> getViatges() {
+	public Set<Viatge> getViatges() {
 		return viatges;
 	}
-	public void setViatges(List<Viatge> viatges) {
+	public void setViatges(Set<Viatge> viatges) {
 		this.viatges = viatges;
 	}
 	
 	public Integer disponible(Date di, Date df) {
 		boolean aux = true;
 		Integer nhab = null;
-		for (int i=0; i < viatges.size() && aux; i++) {
-			Viatge v = viatges.get(i);
+		Viatge[] arrayViatges = (Viatge[]) viatges.toArray();
+		for (int i=0; i < arrayViatges.length && aux; i++) {
+			Viatge v = arrayViatges[i];
 			aux = v.estaDisponible(di, df);
 		}
 		if (aux) {

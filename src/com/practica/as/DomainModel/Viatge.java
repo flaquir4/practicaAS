@@ -4,9 +4,9 @@ import java.util.Date;
 import java.util.HashSet;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,7 +18,7 @@ import com.practica.as.DataLayer.CmpKeyViatge;
 
 
 @Entity
-//@Check(constraints = "dataFi > dataInici")
+@Check(constraints = "dataFi > dataInici")
 public class Viatge {
 
 	private CmpKeyViatge viatgePK;
@@ -69,7 +69,7 @@ public class Viatge {
 	}
 
 	@ManyToOne(cascade=CascadeType.ALL)
-	//@Column(nullable=false)
+	@JoinColumn(nullable=false)
 	public Ciutat getCiutat() {
 		return ciutat;
 	}

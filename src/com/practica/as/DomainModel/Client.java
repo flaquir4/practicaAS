@@ -5,14 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
-
-import org.hibernate.annotations.IndexColumn;
 
 import Excepcions.JaTeViatge;
 
@@ -22,7 +18,12 @@ public class Client {
 	private String nom;
 	private String tlfn;
 	private Integer nombreViatges;
-	private List<Viatge> viatges = new ArrayList<Viatge>();
+	private List<Viatge> viatges;
+	
+	public Client() {
+		nombreViatges = 0;
+		viatges = new ArrayList<Viatge>();
+	}
 
 	@Id
 	public String getDni() {
@@ -71,8 +72,7 @@ public class Client {
 		for (Viatge v : viatges) {
 			boolean b = v.estaDisponible(dataInici, dataFi);
 			if (!b) throw new JaTeViatge();
-		}
-		
+		}		
 		// Viatge v = new Viatge(dni, ciutat, dataInici, dataFi);
 		Viatge v = new Viatge(this, ciutat, dataInici, dataFi);
 		nombreViatges++;

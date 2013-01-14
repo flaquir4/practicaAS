@@ -17,6 +17,7 @@ import com.practica.as.DataLayer.CtrlViatge;
 import com.practica.as.DomainModel.Ciutat;
 import com.practica.as.DomainModel.Client;
 import com.practica.as.DomainModel.Pair;
+import com.practica.as.DomainModel.Viatge;
 
 public class CtrlContractarViatge {
 
@@ -42,15 +43,13 @@ public class CtrlContractarViatge {
 		Client c = cClient.get(dni);
 
 		c.creaViatge(ciutat, dataInici, dataFi);
-		CtrlViatge cViatge = CtrlDataFactoria.INSTANCE.getCtrlViatge();
-		cViatge.insert(c, ciutat, dataInici, dataFi);
+		cClient.saveOrUpdate(c);
 		
 		this.preuVol = ciutat.getPreuVol();
 		this.dni = dni;
 		this.dataInici = dataInici;
 		this.dataFi = dataFi;
 		this.nom = nom;
-	
 	}
 	
 	public HashSet<Pair> mostraHotelsLliures() throws HotelsNoLliures {
@@ -62,9 +61,6 @@ public class CtrlContractarViatge {
 	public float reservaHabitacio(String nomH) {
 		float preu = ctrlReservarHabitacio.reservaHabitacio(nomH);
 		this.preuH = preu;
-		
-		// Ho he canviat per a que retorni el import total
-		// retutn preu;
 		return preuH + preuVol;
 	}
 	

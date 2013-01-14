@@ -32,7 +32,7 @@ public class CmpKeyViatge implements Serializable {
 		this.dataInici = dataInici;
 	}
 
-	@ManyToOne(targetEntity = Client.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Client.class, cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	public Client getClient() {
 		return client;
 	}
